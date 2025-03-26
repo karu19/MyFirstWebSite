@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars Luxury Shop</title>
+    <style>
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('lambo1.png') no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(10px);
+            z-index: -1;
+        }
+
+        header {
+            background-image: url(lambo1.png); 
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        nav {
+            background-color: #0066ff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #050505;
+            font-size: 18px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .product {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            text-align: center;
+            width: 250px;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        .product:nth-child(2) { background-image: url(lambo.jpeg); }
+        .product:nth-child(3) { background-image: url(lambo1.png); }
+        .product:nth-child(4) { background-image: url(lambo2.jpg); }
+        .product:nth-child(5) { background-image: url(lambo3.jpg); }
+        .product:nth-child(6) { background-image: url(lambo4.jpeg); }
+        .product:nth-child(7) { background-image: url(lambo5.jpg); }
+        .product:nth-child(8) { background-image: url(lambo6.avif); }
+        .product:nth-child(9) { background-image: url(lambo7.webp); }
+        .product:nth-child(10) { background-image: url(lambo8.jpg); }
+        .product:nth-child(11) { background-image: url(lambo9.webp); }
+        .product:nth-child(12) { background-image: url(lambo10.webp); }
+        
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .product .sold-count {
+            font-size: 14px;
+            color: #0056b3;
+        }
+
+        .contact-us, .about-us {
+            display: none;
+            background-color: #e6f0ff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-us h2, .about-us h2 {
+            color: #0056b3;
+        }
+
+        .highlight-button {
+            background-color: #ffcc00;
+            color: black;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .highlight-button:hover {
+            background-color: #ffaa00;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #0056b3;
+            padding: 5px;
+            color: white;
+            font-size: 12px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            if (username && password) {
+                localStorage.setItem("loggedIn", "true");
+                showHomePage();
+            } else {
+                alert("Please enter a valid username and password.");
+            }
+        }
+        
+
+        function logout() {
+            localStorage.removeItem("loggedIn");
+            showLoginForm();
+        }
+
+        function checkLogin() {
+            if (!localStorage.getItem("loggedIn")) {
+                showLoginForm();
+            } else {
+                showHomePage();
+            }
+        }
+
+        function showLoginForm() {
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('contact-us-section').style.display = 'none';
+            document.getElementById('about-us-section').style.display = 'none';
+        }
+
+        function showHomePage() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('home-section').style.display = 'block';
+            document.getElementById('contact-us-section').style.display = 'none';
+            document.getElementById('about-us-section').style.display = 'none';
+        }
+
+        function showContactUsPage() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('contact-us-section').style.display = 'block';
+            document.getElementById('about-us-section').style.display = 'none';
+        }
+
+        function showAboutUsPage() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('contact-us-section').style.display = 'none';
+            document.getElementById('about-us-section').style.display = 'block';
+        }
+        
+        
+    </script>
+</head>
+<body onload="checkLogin()">
+
+    <div id="login-form" class="container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username"><br><br>
+        <input type="password" id="password" placeholder="Password"><br><br>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div id="home-section" style="display: none;">
+        <header>
+            <h1> Carl Luxury Cars Shop</h1>
+            <p>Best Car Selling In The World</p>
+        </header>
+    
+        <nav>
+            <a href="#" onclick="showHomePage()">Home</a>
+            <a href="#" onclick="showContactUsPage()">Contact Us</a>
+            <a href="#" onclick="showAboutUsPage()">About Us</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </nav>
+    
+        <div class="container">
+            <h2>Luxury Cars</h2>
+            <div class="product" data-name="CARS">
+                <img src="lambo.jpeg" alt="gl">
+                <p>Lamborghini Diablo</p>
+                <p>350,000,000.00</p>
+                <p class="sold-count">Fully-Paid: 300M</p>
+                <button>BUY IT!</button>
+            </div>
+
+            
+       
+           
+            <div class="product" data-name="CARS">
+                <img src="lambo1.png" alt="gl">
+                <p>Lamborghini Aventador</p>
+                <p>350,000,000.00</p>
+                <p class="sold-count">Fully-Paid: 300M</p>
+                <button>BUY IT!</button>
+            </div>
+
+            
+       
+          
+            <div class="product" data-name="CARS">
+                <img src="lambo2.jpg" alt="gl">
+                <p>Lamborghini Huracán </p>
+                <p>321,000,000.00</p>
+                <p class="sold-count">Fully-Paid: 300M</p>
+                <button>BUY IT!</button>
+            </div>
+
+            
+       
+            
+            <div class="product" data-name="CARS">
+                <img src="lambo3.jpg" alt="gl">
+                <p>Lamborghini Urus</p>
+                <p>358,000,000.00</p>
+                <p class="sold-count">Fully-Paid: 300M</p>
+                <button>BUY IT!</button>
+            </div>
+
+            
+        
+          
+            <div class="product" data-name="CARS">
+                <img src="lambo4.jpeg" alt="gl">
+                <p>Lamborghini Revuelto</p>
+                <p>386,000,000.00</p>
+                <p class="sold-count">Fully-Paid: 300M</p>
+                <button>BUY IT!</button>
+            </div>
+
+            
+        
+            <div class="product" data-name="CARS">
+                <img src="lambo5.jpg" alt="gl">
+                <p>Lamborghini Sian</p>
+                <p>366,000,000.00</p>
+                <p class="sold-count">Fully-Paid: 300M</p>
+                <button>BUY IT!</button>
+            </div>
+
+            
+       
+            <div class="product" data-name="CARS">
+                <img src="lambo6.avif" alt="gl">
+                <p>Lamborghini Centenario</p>
+                <p>388,000,000.00</p>
+                <p class="sold-count">Fully-Paid: 300M</p>
+                <button>BUY IT!</button>
+            </div>
+
+            
+       
+            <div class="product" data-name="CARS">
+                <img src="lambo7.webp" alt="gl">
+                <p>Lamborghini Veneno</p>
+                <p>322,000,000.00</p>
+                <p class="sold-count">Fully-Paid: 300M</p>
+                <button>BUY IT!</button>
+            </div>
+
+            
+      
+            <div class="product" data-name="CARS">
+                <img src="lambo8.jpg" alt="gl">
+                <p>Lamborghini Terzo Millennio</p>
+                <p>333,000,000.00</p>
+                <p class="sold-count">Fully-Paid: 300M</p>
+                <button>BUY IT!</button>
+            </div>
+
+            
+        
+            <div class="product" data-name="CARS">
+                <img src="lambo9.webp" alt="gl">
+                <p>Lamborghini Essenza SCV12</p>
+                <p>388,000,000.00</p>
+                <p class="sold-count">Fully-Paid: 300M</p>
+                <button>BUY IT!</button>
+            </div>          
+        
+            <div class="product" data-name="CARS">
+                <img src="lambo10.webp" alt="gl">
+                <p>Lamborghini Diablo</p>
+                <p>367,000,000.00</p>
+                <p class="sold-count">Fully-Paid: 300M</p>
+                <button>BUY IT!</button>
+            </div>
+      
+        </div>
+    </div>
+
+    <div id="contact-us-section" class="contact-us">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to reach out to us!</p>
+        <p>Email: support@carluxurycars.com</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Address: 123 Luxury Cars Ave, Auto City, 56789</p>
+        <p>Business Hours: Mon-Fri 9:00 AM - 6:00 PM</p>
+        <button onclick="showHomePage()">Back to Home</button>
+    </div>
+
+    <div id="about-us-section" class="about-us">
+        <h2>About Us</h2>
+        <p>Welcome to Carl Luxury Cars! We specialize in providing high-end luxury vehicles to customers worldwide. Our collection features the most prestigious brands, ensuring top quality, performance, and style.</p>
+        <p>Founded in 2005, we have over 20 years of experience in the luxury car industry. Our mission is to offer the best selection of exotic cars at unbeatable prices while delivering exceptional customer service.</p>
+        <button onclick="showHomePage()">Back to Home</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Carl Luxury Cars. All rights reserved.</p>
+    </footer>
+</body>
+</html>
